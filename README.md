@@ -1,2 +1,2 @@
 # ionic-labs
-Daily Musings with latest Ionic Framework
+Daily Musings with latest Ionic Framework.
