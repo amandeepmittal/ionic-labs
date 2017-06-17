@@ -35,3 +35,5 @@ export class AppModule {}
   * no need to import these modules separately in app's components
 - provides access to native device funtionality
 - access to cordova
+
+For more information on members: [offical docs](https://ionicframework.com/docs/api/IonicModule/)
