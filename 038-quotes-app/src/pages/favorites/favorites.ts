@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Quote } from '../../data/quote.interface';
 import { QuotePage } from '../quote/quote';
 import { QuotesProvider } from '../../providers/quotes/quotes';
+import { SettingsProvider } from '../../providers/settings/settings';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ import { QuotesProvider } from '../../providers/quotes/quotes';
 })
 export class FavoritesPage {
   quotes: Quote[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public quotesService: QuotesProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public quotesService: QuotesProvider, public modalCtrl: ModalController, public settingsService: SettingsProvider) {
   }
 
   ionViewWillEnter() {
@@ -35,5 +36,9 @@ export class FavoritesPage {
           return quoteEl.id == quote.id;
         });
         this.quotes.splice(position, 1);
+  }
+
+  getBackground() {
+    return this.settingsService.isAltBackground() ? 'altQuoteBackground' : 'quoteBackground';
   }
 }
