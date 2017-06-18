@@ -10,3 +10,4 @@ Topics Covered:
 ![diff-pages-stack](http://i.imgur.com/t3EyJMY.png)
 
 - implement Tabs navigation in a blank template
+  * `selectedIndex` attribute on `ion-tabs` can alter the default behaviour of displaying a tab in app start
