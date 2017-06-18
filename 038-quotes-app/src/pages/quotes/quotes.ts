@@ -29,7 +29,7 @@ export class QuotesPage  implements OnInit{
   // because ion page lifecycle events are load after angular 2 loads the template
   // }
 
-  onAddToFavorite(quote: Quote) {
+  onAddToFavorites(quote: Quote) {
     const alert = this.alertCtrl.create({
       title: 'Add Quote',
       subTitle: 'Are you sure?',
@@ -53,4 +53,13 @@ export class QuotesPage  implements OnInit{
 
     alert.present();
   }
+
+  onRemoveFromFavorites(quote: Quote) {
+  this.quotesService.removeQuoteFromFavorites(quote);
+  }
+
+  isFavorite(quote: Quote) {
+    return this.quotesService.isQuoteFavorite(quote);
+  }
+
 }
