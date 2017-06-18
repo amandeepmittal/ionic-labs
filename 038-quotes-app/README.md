@@ -3,3 +3,10 @@
 Topics Covered:
 - app creation
 - setting a different root page instead of `HomePage`
+- create required pages: Settings, Library, Favorites, Quotes, Quote
+- Single Page Stack vs Multiple Pages Stack
+  * Tabs and Sidemenu follow Multiple Pages Stack
+
+![diff-pages-stack](http://i.imgur.com/t3EyJMY.png)
+
+- implement Tabs navigation in a blank template
