@@ -10,6 +10,7 @@ import { QuotesPage } from '../pages/quotes/quotes';
 import { SettingsPage } from '../pages/settings/settings';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { TabsPage } from '../pages/tabs/tabs';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { StatusBar } from '@ionic-native/status-bar';
     SettingsPage,
     LibraryPage,
     QuotePage,
-    QuotesPage
+    QuotesPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { StatusBar } from '@ionic-native/status-bar';
     SettingsPage,
     LibraryPage,
     QuotePage,
-    QuotesPage
+    QuotesPage,
+    TabsPage
   ],
   providers: [
     StatusBar,
