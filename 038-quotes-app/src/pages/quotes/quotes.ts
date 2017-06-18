@@ -1,5 +1,5 @@
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Quote } from './../../data/quote.interface';
 
@@ -11,7 +11,7 @@ import { Quote } from './../../data/quote.interface';
 export class QuotesPage  implements OnInit{
   quoteGroup: {category: string, quotes: Quote[], icon: string};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
 
   }
 
@@ -28,4 +28,28 @@ export class QuotesPage  implements OnInit{
   // because ion page lifecycle events are load after angular 2 loads the template
   // }
 
+  onAddToFavorite(quote: Quote) {
+    const alert = this.alertCtrl.create({
+      title: 'Add Quote',
+      subTitle: 'Are you sure?',
+      message: 'You sure, you want to favorite his quote?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Ok');
+          }
+        },
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel');
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
 }
