@@ -11,3 +11,5 @@ Topics Covered:
 
 - implement Tabs navigation in a blank template
   * `selectedIndex` attribute on `ion-tabs` can alter the default behaviour of displaying a tab in app start
+- add quotes data as `quoteCollection` in `LibraryPage`
+  * using `ion-list`
