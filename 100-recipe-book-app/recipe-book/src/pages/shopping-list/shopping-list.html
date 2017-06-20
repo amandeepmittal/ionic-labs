@@ -21,4 +21,14 @@
     </ion-list>
     <button ion-button type="submit" block [disabled]="!f.valid">Add Item</button>
   </form>
+  <ion-list>
+    <ion-item *ngFor="let item of shoppingListItems; let i = index" (click)="onCheckItem(i)">
+      <h3>
+        {{item.name}}
+      </h3>
+      <p>
+        {{item.amount}}
+      </p>
+    </ion-item>
+  </ion-list>
 </ion-content>
