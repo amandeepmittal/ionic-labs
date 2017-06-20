@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from "@angular/forms/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { Validators } from "@angular/forms/src/forms";
 
 @IonicPage()
 @Component({
@@ -19,6 +17,11 @@ export class EditRecipePage implements OnInit{
 
   ngOnInit() {
     this.mode = this.navParams.get('mode');
+    this.initializeForm();
+  }
+
+  onSubmit(){
+    console.log(this.recipeForm.value);
   }
 
   private initializeForm() {
