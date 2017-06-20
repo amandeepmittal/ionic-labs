@@ -19,11 +19,12 @@
         <ion-textarea></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label floating>Difficulty</ion-label>
+        <ion-label>Difficulty</ion-label>
         <ion-select>
           <ion-option *ngFor="let option of selectOptions" [value]="option">{{option}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>
+    <button type="submit" ion-button block>{{mode}} Recipe</button>
   </form>
 </ion-content>

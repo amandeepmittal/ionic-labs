@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from "@angular/forms/forms";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { Validators } from "@angular/forms/src/forms";
 
 @IonicPage()
 @Component({
@@ -9,6 +12,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class EditRecipePage implements OnInit{
   mode = 'New';
   selectOptions = ['Easy', 'Medium', 'Hard'];
+  recipeForm: FormGroup;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -16,4 +21,11 @@ export class EditRecipePage implements OnInit{
     this.mode = this.navParams.get('mode');
   }
 
+  private initializeForm() {
+    this.recipeForm = new FormGroup({
+      'title': new FormControl(null, Validators.required),
+      'description': new FormControl(null, Validators.required),
+      'difficulty': new FormControl('Medium', Validators.required)
+    });
+  }
 }
