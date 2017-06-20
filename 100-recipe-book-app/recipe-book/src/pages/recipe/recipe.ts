@@ -1,7 +1,6 @@
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Component } from '@angular/core';
-import { Recipe } from '../../models/recipe';
 
 @IonicPage()
 @Component({
