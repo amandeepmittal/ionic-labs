@@ -14,7 +14,7 @@ export class RecipeProvider {
     this.recipes.push(new Recipe(title, description, difficulty, ingredients));
   }
 
-  getRecipe() {
+  getRecipes() {
     return this.recipes.slice();
   }
 
