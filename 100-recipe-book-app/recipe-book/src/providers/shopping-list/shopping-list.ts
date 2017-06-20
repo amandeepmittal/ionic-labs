@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Ingredient } from "../../models/ingredients";
 
-/*
-  Generated class for the ShoppingListProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class ShoppingListProvider {
+  private ingredinets: Ingredient[] = [];
+  constructor() {}
 
-  constructor(public http: Http) {
-    console.log('Hello ShoppingListProvider Provider');
+  addItem(name: string, amount: number) {
+    this.ingredinets.push(new Ingredient(name, amount));
+    console.log(this.ingredinets);
+  }
+
+  addItems(items: Ingredient[]) {
+    this.ingredinets.push(...items);
+  }
+
+  getItems() {
+    return this.ingredinets.slice();
+  }
+
+  removeItem(index: number) {
+    this.ingredinets.splice(index, 1);
   }
 
 }
