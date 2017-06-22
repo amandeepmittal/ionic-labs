@@ -14,6 +14,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TabsPage } from "../pages/tabs/tabs";
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TabsPage } from "../pages/tabs/tabs";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShoppingListProvider,
-    RecipeProvider
+    RecipeProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}
