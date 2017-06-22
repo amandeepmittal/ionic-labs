@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AuthProvider } from '../providers/auth/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { EditRecipePage } from "../pages/edit-recipe/edit-recipe";
+import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { RecipePage } from "../pages/recipe/recipe";
 import { RecipeProvider } from '../providers/recipe/recipe';
@@ -30,6 +31,7 @@ import { TabsPage } from "../pages/tabs/tabs";
     SloptionsPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],

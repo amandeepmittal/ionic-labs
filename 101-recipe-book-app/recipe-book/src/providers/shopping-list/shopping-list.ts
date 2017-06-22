@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+
+import { Http, Response } from '@angular/http';
+
+import { AuthProvider } from '../auth/auth';
 import { Ingredient } from "../../models/ingredients";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ShoppingListProvider {
   private ingredinets: Ingredient[] = [];
-  constructor() {}
+  constructor(public http: Http, public authService: AuthProvider) {}
 
   addItem(name: string, amount: number) {
     this.ingredinets.push(new Ingredient(name, amount));
@@ -22,6 +26,14 @@ export class ShoppingListProvider {
 
   removeItem(index: number) {
     this.ingredinets.splice(index, 1);
+  }
+
+  storeList(token: string) {
+    const userId = this.authService.getActiveUser().uid;
+    return this.http.put('https://ionic3-recipe-book-79d1f.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token, this.ingredinets)
+    .map((response: Response) => {
+      return response.json();
+    })
   }
 
 }

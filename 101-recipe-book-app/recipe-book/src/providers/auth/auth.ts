@@ -18,4 +18,8 @@ export class AuthProvider {
     firebase.auth().signOut();
   }
 
+  getActiveUser() {
+    return firebase.auth().currentUser;
+  }
+
 }

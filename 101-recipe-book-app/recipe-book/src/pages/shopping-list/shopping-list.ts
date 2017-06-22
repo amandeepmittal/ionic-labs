@@ -1,5 +1,6 @@
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 
+import { AuthProvider } from '../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { Ingredient } from "../../models/ingredients";
 import { NgForm } from "@angular/forms";
@@ -13,7 +14,7 @@ import { SloptionsPage } from "../sloptions/sloptions";
 })
 export class ShoppingListPage {
   shoppingListItems: Ingredient[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public shoppingListService: ShoppingListProvider, public popoverCtrl: PopoverController){
+  constructor(public navCtrl: NavController, public navParams: NavParams, public shoppingListService: ShoppingListProvider, public popoverCtrl: PopoverController, public authService: AuthProvider){
   }
 
   onAddItem(form: NgForm) {
@@ -36,6 +37,22 @@ export class ShoppingListPage {
     popover.present({
       ev: event
     });
+    popover.onDidDismiss(data => {
+      if(data.action == 'load') {
+
+      } else {
+        this.authService.getActiveUser().getToken()
+        .then((token: string) => {
+          this.shoppingListService.storeList(token)
+          .subscribe(
+            () => {
+            console.log('Success');
+          }, error => {
+            console.log(error);
+          })
+        });
+      }
+    })
   }
 
   private loadItems() {

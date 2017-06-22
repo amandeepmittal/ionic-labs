@@ -17,5 +17,4 @@ export class SloptionsPage {
       action: action
     });
   }
-
 }
