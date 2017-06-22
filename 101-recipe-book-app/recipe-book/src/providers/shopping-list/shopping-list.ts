@@ -1,4 +1,5 @@
 import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
 
 import { Http, Response } from '@angular/http';
 
@@ -33,7 +34,18 @@ export class ShoppingListProvider {
     return this.http.put('https://ionic3-recipe-book-79d1f.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token, this.ingredinets)
     .map((response: Response) => {
       return response.json();
+    });
+  }
+
+  fetchList(token: string) {
+    const userId = this.authService.getActiveUser().uid;
+    return this.http.get('https://ionic3-recipe-book-79d1f.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token)
+    .map((response: Response) => {
+      return response.json();
     })
+    .do((data) => {
+      this.ingredinets = data;
+    });
   }
 
 }
