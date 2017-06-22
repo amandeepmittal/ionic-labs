@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
 import { Component } from '@angular/core';
@@ -11,17 +11,29 @@ import { NgForm } from '@angular/forms';
 })
 export class SignupPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
 
   }
 
   onSignup(form: NgForm) {
+    const loading = this.loadingCtrl.create({
+      content: 'Signing you up...'
+    });
+    loading.present();
     this.authService.signup(form.value.email, form.value.password).then((data) => {
-      console.log(data);
+      loading.dismiss();
+      // console.log(data);
     })
     .catch((error) => {
-      console.log(error);
-    })
+      loading.dismiss();
+      const alert = this.alertCtrl.create({
+        title: 'Signup failed!',
+        message: error.message,
+        buttons: ['Ok']
+      });
+      alert.present();
+      // console.log(error);
+    });
   }
 
 }
