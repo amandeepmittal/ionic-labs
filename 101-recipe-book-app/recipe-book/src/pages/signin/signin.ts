@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
 import { Component } from '@angular/core';
@@ -11,16 +11,26 @@ import { NgForm } from '@angular/forms';
 })
 export class SigninPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
   }
 
   onSignin(form: NgForm) {
+    const loading = this.loadingCtrl.create({
+      content: 'Signing in...'
+    });
+    loading.present();
     this.authService.signin(form.value.email, form.value.password)
     .then(data => {
-      console.log(data);
+      loading.dismiss();
     })
     .catch(error => {
-      console.log(error);
+      loading.dismiss();
+      const alert = this.alertCtrl.create({
+        title: 'Signin Failed',
+        message: error.message,
+        buttons: ['Ok']
+      });
+      alert.present();
     });
   }
 
