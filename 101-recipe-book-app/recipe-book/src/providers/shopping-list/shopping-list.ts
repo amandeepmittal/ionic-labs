@@ -9,29 +9,29 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ShoppingListProvider {
-  private ingredinets: Ingredient[] = [];
+  private ingredients: Ingredient[] = [];
   constructor(public http: Http, public authService: AuthProvider) {}
 
   addItem(name: string, amount: number) {
-    this.ingredinets.push(new Ingredient(name, amount));
-    console.log(this.ingredinets);
+    this.ingredients.push(new Ingredient(name, amount));
+    console.log(this.ingredients);
   }
 
   addItems(items: Ingredient[]) {
-    this.ingredinets.push(...items);
+    this.ingredients.push(...items);
   }
 
   getItems() {
-    return this.ingredinets.slice();
+    return this.ingredients.slice();
   }
 
   removeItem(index: number) {
-    this.ingredinets.splice(index, 1);
+    this.ingredients.splice(index, 1);
   }
 
   storeList(token: string) {
     const userId = this.authService.getActiveUser().uid;
-    return this.http.put('https://ionic3-recipe-book-79d1f.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token, this.ingredinets)
+    return this.http.put('https://ionic3-recipe-book-79d1f.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token, this.ingredients)
     .map((response: Response) => {
       return response.json();
     });
@@ -43,8 +43,13 @@ export class ShoppingListProvider {
     .map((response: Response) => {
       return response.json();
     })
-    .do((data) => {
-      this.ingredinets = data;
+    .do((ingredients: Ingredient[]) => {
+      if(ingredients) {
+        this.ingredients = ingredients;
+      } else {
+        this.ingredients = [];
+      }
+
     });
   }
 
