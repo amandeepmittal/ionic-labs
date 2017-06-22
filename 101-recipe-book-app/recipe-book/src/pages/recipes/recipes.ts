@@ -36,6 +36,9 @@ export class RecipesPage {
       ev: event
     });
     popover.onDidDismiss(data => {
+      if(!data) {
+        return;
+      }
       if(data.action == 'load') {
         loading.present();
          this.authService.getActiveUser().getToken()
@@ -71,9 +74,9 @@ export class RecipesPage {
     });
   }
 
-  private loadItems() {
-    this.recipes = this.recipeService.getRecipes();
-  }
+  // private loadItems() {
+  //   this.recipes = this.recipeService.getRecipes();
+  // }
 
   private handleError(errorMessage: string) {
     const alert = this.alertCtrl.create({
@@ -82,10 +85,6 @@ export class RecipesPage {
       buttons: ['Ok']
     });
     alert.present();
-  }
-
-    onLoadRecipe() {
-
   }
 
 }
